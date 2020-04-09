@@ -1,5 +1,6 @@
 runtime: python37
 service: serve-iris-predictions
+entrypoint: gunicorn -b :8080 -w 2 app.main:app
 env_variables:
     PROJECT: $PROJECT_ID
     ML_MODELS_BUCKET: $ML_MODELS_BUCKET
