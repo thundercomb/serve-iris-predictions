@@ -1,6 +1,6 @@
 Flask==1.0.2
 google-cloud-storage
 gpt_2_simple
-sklearn
+scikit-learn
 joblib
 gunicorn
