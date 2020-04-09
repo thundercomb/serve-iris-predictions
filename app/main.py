@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from google.cloud import storage
-from sklearn import svm
 from sklearn import datasets
 from joblib import load
 
