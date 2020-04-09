@@ -8,14 +8,15 @@ steps:
   args:
   - '-c'
   - |
-     ML_MODELS_BUCKET="${PROJECT_ID}-models"
      sed -e "s/\$$PROJECT_ID/$PROJECT_ID/g" \
-         -e "s/\$$ML_MODELS_BUCKET/$$ML_MODELS_BUCKET/g" app.yaml.tmpl > app.yaml
+         -e "s/\$$ML_MODELS_BUCKET/$_ML_MODELS_BUCKET/g" app.yaml.tmpl > app.yaml
      cat app.yaml
      gcloud app deploy --project ${_ANALYTICS_PROJECT}
   dir: /workspace
 
-substitutions:
-    _MODEL_ARCHIVE: iris.joblib
+options:
+    env:
+    - _ML_MODELS_BUCKET='${_ANALYTICS_PROJECT}-models'
+    - _MODEL_ARCHIVE='iris.joblib'
 
 timeout: "1600s"
