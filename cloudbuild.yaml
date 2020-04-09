@@ -1,6 +1,10 @@
 steps:
 - name: "gcr.io/cloud-builders/gsutil"
-  args: ['cp', 'gs://$$ML_MODELS_BUCKET/iris/*latest', '$$MODEL_ARCHIVE']
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+     gsutil cp gs://$$ML_MODELS_BUCKET/iris/*latest $$MODEL_ARCHIVE
   dir: /workspace
 
 - name: "gcr.io/cloud-builders/gcloud"
