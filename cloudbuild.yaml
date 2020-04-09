@@ -8,13 +8,14 @@ steps:
   args:
   - '-c'
   - |
-     sed -e "s/\$$PROJECT_ID/$PROJECT_ID/g" app.yaml.tmpl > app.yaml
+     ML_MODELS_BUCKET="${PROJECT_ID}-models"
+     sed -e "s/\$$PROJECT_ID/$PROJECT_ID/g" \
+         -e "s/\$$ML_MODELS_BUCKET/$$ML_MODELS_BUCKET/g" app.yaml.tmpl > app.yaml
      cat app.yaml
      gcloud app deploy --project ${_ANALYTICS_PROJECT}
   dir: /workspace
 
 substitutions:
-    _ML_MODELS_BUCKET: climate-analytics-ml-models
     _MODEL_ARCHIVE: iris.joblib
 
 timeout: "1600s"

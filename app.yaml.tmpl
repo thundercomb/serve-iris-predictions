@@ -2,7 +2,7 @@ runtime: python37
 service: serve-iris-predictions
 env_variables:
     PROJECT: $PROJECT
-    ML_MODELS_BUCKET: climate-analytics-ml-models
+    ML_MODELS_BUCKET: $ML_MODELS_BUCKET
     BUCKET_PREFIX: iris
     MODEL_VERSION: latest
     MODEL_NAME: iris.joblib
