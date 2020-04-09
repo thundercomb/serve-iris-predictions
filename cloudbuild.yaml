@@ -20,7 +20,7 @@ steps:
 
 options:
     env:
-    - ML_MODELS_BUCKET='${_ANALYTICS_PROJECT}-models'
-    - MODEL_ARCHIVE='iris.joblib'
+    - ML_MODELS_BUCKET=${_ANALYTICS_PROJECT}-models
+    - MODEL_ARCHIVE=iris.joblib
 
 timeout: "1600s"
