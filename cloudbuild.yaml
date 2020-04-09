@@ -1,6 +1,6 @@
 steps:
 - name: "gcr.io/cloud-builders/gsutil"
-  args: ['cp', 'gs://$${_ML_MODELS_BUCKET}/iris/*latest', '${_MODEL_ARCHIVE}']
+  args: ['cp', 'gs://$$ML_MODELS_BUCKET/iris/*latest', '$$MODEL_ARCHIVE']
   dir: /workspace
 
 - name: "gcr.io/cloud-builders/gcloud"
@@ -9,14 +9,14 @@ steps:
   - '-c'
   - |
      sed -e "s/\$$PROJECT_ID/$PROJECT_ID/g" \
-         -e "s/\$$ML_MODELS_BUCKET/$_ML_MODELS_BUCKET/g" app.yaml.tmpl > app.yaml
+         -e "s/\$$ML_MODELS_BUCKET/$$ML_MODELS_BUCKET/g" app.yaml.tmpl > app.yaml
      cat app.yaml
      gcloud app deploy --project ${_ANALYTICS_PROJECT}
   dir: /workspace
 
 options:
     env:
-    - _ML_MODELS_BUCKET='${_ANALYTICS_PROJECT}-models'
-    - _MODEL_ARCHIVE='iris.joblib'
+    - ML_MODELS_BUCKET='${_ANALYTICS_PROJECT}-models'
+    - MODEL_ARCHIVE='iris.joblib'
 
 timeout: "1600s"
